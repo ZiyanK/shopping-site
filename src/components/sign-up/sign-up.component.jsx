@@ -3,11 +3,11 @@ import React from 'react';
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 
-//import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 import './sign-up.styles.scss';
 
-class signUp extends React.Component {
+class SignUp extends React.Component {
     constructor(props) {
         super(props);
 
@@ -29,20 +29,20 @@ class signUp extends React.Component {
             return;
         }
 
-        // try {
-        //     const { user } = await auth.createUserWithEmailAndPassword(email, password);
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword(email, password);
 
-        //     await createUserProfileDocument (user, { displayName });
+            await createUserProfileDocument (user, { displayName });
 
-        //     this.setState({
-        //         displayName: '',
-        //         email: '',
-        //         password: '',
-        //         confirmPassword: ''
-        //     })
-        // } catch (error) {
-        //     console.log(error);
-        // }
+            this.setState({
+                displayName: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     handleChange = event => {
@@ -93,8 +93,8 @@ class signUp extends React.Component {
                     <CustomButton type='submit'> SIGN UP </CustomButton>
                 </form> 
             </div>
-        )
+        );
     }
 }
 
-export default signUp;
+export default SignUp;
